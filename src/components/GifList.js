@@ -15,8 +15,16 @@ class GifList extends React.Component {
    }
 
    toggleHandler(toggle){
+      console.log('togglin');
       if (toggle === 'random'){
-         this.setState({gifsDisplay: this.props.gifsPage.gifs1[Math.floor(Math.random() * this.state.gifsTotal.length)]})
+         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
+         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
+
+         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
+         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
+         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
+
+         this.setState({gifsDisplay: this.props.gifsTotal[Math.floor(Math.random() * this.state.gifsTotal.length)]})
       }
    }
 
