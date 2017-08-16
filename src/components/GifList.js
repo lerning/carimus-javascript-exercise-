@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
+import Toggles from "./Toggles"
 import GifItem from "./GifItem"
 
 class GifList extends React.Component {
    constructor(props){
      super(props)
+
+     this.state = {
+        gifsTotal: this.props.gifsTotal,
+        gifsDisplay: this.props.gifsPage.gifs1
+     }
+
+     this.toggleHandler = this.toggleHandler.bind(this)
+   }
+
+   toggleHandler(toggle){
+      if (toggle === 'random'){
+         this.setState({gifsDisplay: this.props.gifsPage.gifs1[Math.floor(Math.random() * this.state.gifsTotal.length)]})
+      }
    }
 
    render () {
-
-      let GifItems = this.props.gifs.map((gif, i) => {
-         return (
-            <GifItem key={i} gif={gif} data={i} />
-         )
-      })
-      console.log('giffy', GifItems)
+      console.log('whats in displau', this.state.gifsDisplay);
+      let GifItems = <GifItem gif={this.state.gifsDisplay} data={this.state.gifsDisplay.id} />
+      if (this.state.gifsDisplay.length > 1){
+         GifItems = this.state.gifsDisplay.map((gif, i) => {
+            return (
+               <GifItem key={i} gif={gif} data={i} />
+            )
+         })
+      }
+      // else {
+      //    let GifItems = this.state.gifsDisplay
+      // }
+      //
+      // console.log('poooo', GifItems);
 
       return (
-         <div className="row">
-           <div className="col-md-12">
-             { GifItems }
-           </div>
+         <div>
+            <Toggles toggleHandler={ this.toggleHandler } />
+            <div className="row">
+              <div className="col-md-12">
+               { GifItems}
+              </div>
+            </div>
          </div>
       )
    }

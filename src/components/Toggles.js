@@ -13,8 +13,8 @@ class Toggles extends React.Component {
                        <span className="glyphicon glyphicon-list"></span>
                            See All
                      </a>
-                     <a href="#" className="btn btn-primary">
-                       <span className="glyphicon glyphicon-random"></span>
+                     <a href="#" onClick={ () => this.props.toggleHandler('random') } className="btn btn-primary">
+                       <span  className="glyphicon glyphicon-random"></span>
                        Random
                      </a>
                    </div>
@@ -25,6 +25,8 @@ class Toggles extends React.Component {
          </div>
       )
    }
+
+
 }
 
 export default Toggles

@@ -5,7 +5,6 @@ export default class GifItem extends React.Component {
      super(props)
    }
    render () {
-      console.log('proparu', this.props)
       let GifUrl = `gifs/${this.props.data}.gif`
       return (
           <div className="gif-entry">
