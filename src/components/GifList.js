@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Toggles from "./Toggles"
+import PageNav from "./PageNav"
+import Loader from "./Loader"
 import GifItem from "./GifItem"
 
 class GifList extends React.Component {
@@ -15,34 +17,32 @@ class GifList extends React.Component {
    }
 
    toggleHandler(toggle){
-      console.log('togglin');
       if (toggle === 'random'){
-         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
-         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
-
-         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
-         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
-         console.log(Math.floor(Math.random() * this.state.gifsTotal.length));
-
          this.setState({gifsDisplay: this.props.gifsTotal[Math.floor(Math.random() * this.state.gifsTotal.length)]})
+      } else if (toggle === 'all') {
+         console.log('all');
+         this.setState({gifsDisplay: this.props.gifsPage.gifs1})
+      } else if (!isNaN(toggle)) {
+         console.log( eval(`this.props.gifsPage.gifs${toggle}`));
+         this.setState({ gifsDisplay: eval(`this.props.gifsPage.gifs${toggle}`) })
       }
    }
 
    render () {
-      console.log('whats in displau', this.state.gifsDisplay);
-      let GifItems = <GifItem gif={this.state.gifsDisplay} data={this.state.gifsDisplay.id} />
-      if (this.state.gifsDisplay.length > 1){
+      console.log('disp', this.state.gifsDisplay);
+      let GifItems
+      if (!this.state.gifsDisplay) GifItems = <Loader />
+      else if (this.state.gifsDisplay &&  this.state.gifsDisplay.length > 1){
          GifItems = this.state.gifsDisplay.map((gif, i) => {
             return (
-               <GifItem key={i} gif={gif} data={i} />
+               <GifItem key={gif.id} gif={gif} data={gif.id} />
             )
          })
       }
-      // else {
-      //    let GifItems = this.state.gifsDisplay
-      // }
-      //
-      // console.log('poooo', GifItems);
+      else if (this.state.gifsDisplay.url){
+         console.log('working');
+         GifItems = <GifItem gif={this.state.gifsDisplay} data={this.state.gifsDisplay.id} />
+      }
 
       return (
          <div>
@@ -52,6 +52,7 @@ class GifList extends React.Component {
                { GifItems}
               </div>
             </div>
+            <PageNav toggleHandler={ this.toggleHandler } />
          </div>
       )
    }

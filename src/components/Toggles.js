@@ -9,7 +9,7 @@ class Toggles extends React.Component {
                <div className="row">
                  <div className="col-sm-12">
                    <div className="btn-group btn-group-justified">
-                     <a href="#" className="btn btn-default">
+                     <a href="#" onClick={ () => this.props.toggleHandler('all') } className="btn btn-default">
                        <span className="glyphicon glyphicon-list"></span>
                            See All
                      </a>
