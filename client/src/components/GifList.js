@@ -10,19 +10,20 @@ class GifList extends React.Component {
 
      this.state = {
         gifsTotal: this.props.gifsTotal,
-        gifsDisplay: this.props.gifsTotal
+        gifsDisplay: this.props.gifsTotal.slice(0, 10)
      }
 
      this.toggleHandler = this.toggleHandler.bind(this)
    }
 
+
    toggleHandler(toggle){
       if (toggle === 'random'){
-         this.setState({gifsDisplay: this.props.gifsTotal[Math.floor(Math.random() * this.state.gifsTotal.length)]})
+         this.setState({gifsDisplay: this.props.gifsTotal[Math.floor(Math.random() * this.props.gifsTotal.length)]})
       } else if (toggle === 'all') {
-         this.setState({gifsDisplay: this.props.gifsTotal})
+         this.setState({gifsDisplay: this.props.gifsTotal.slice(0, 10)})
       } else if (!isNaN(toggle)) {
-         this.setState({ gifsDisplay: eval(`this.props.gifsTotal`) })
+         this.setState({ gifsDisplay: this.props.gifsTotal.slice((toggle * 10 - 10), (toggle * 10)) })
       }
    }
 
@@ -30,7 +31,9 @@ class GifList extends React.Component {
       console.log('tbone', this.state.gifsTotal);
       console.log('gif list 111', this.state.gifsDisplay);
       let GifItems
-      if (!this.state.gifsDisplay || this.state.gifsDisplay < 1) GifItems = <Loader />
+      if (!this.state.gifsDisplay || this.state.gifsDisplay < 1) {
+         GifItems = <Loader />
+      }
       else if (this.state.gifsDisplay &&  this.state.gifsDisplay.length > 1){
          GifItems = this.state.gifsDisplay.map((gif, i) => {
             return (
@@ -41,7 +44,6 @@ class GifList extends React.Component {
       else if (this.state.gifsDisplay.url){
          GifItems = <GifItem gif={this.state.gifsDisplay} data={this.state.gifsDisplay.id} />
       }
-      console.log('gif list 222', this.state.gifsDisplay);
       return (
          <div>
             <Toggles toggleHandler={ this.toggleHandler } />

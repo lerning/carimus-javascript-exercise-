@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from "./components/Header"
 import GifList from "./components/GifList"
 import Footer from "./components/Footer"
+import Loader from "./components/Loader"
 
 import './App.css';
 
@@ -36,15 +37,16 @@ class App extends Component {
 
   render() {
      console.log('totality', this.state.gifsTotal);
+     let content = this.state.gifsTotal.length >= 1? <GifList gifsTotal = { this.state.gifsTotal } /> : <Loader />
+
     return (
       <div className="App">
          <Header />
-         <GifList gifsTotal = { this.state.gifsTotal } />
+            { content }
          <Footer />
       </div>
     );
   }
 }
-// <Loader />
 
 export default App;
