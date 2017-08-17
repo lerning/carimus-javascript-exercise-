@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class Toggles extends React.Component {
    render () {
@@ -9,11 +9,11 @@ class Toggles extends React.Component {
                <div className="row">
                  <div className="col-sm-12">
                    <div className="btn-group btn-group-justified">
-                     <a href="#" onClick={ () => this.props.toggleHandler('all') } className="btn btn-default">
+                     <a href="#0" onClick={ () => this.props.toggleHandler('all') } className="btn btn-default">
                        <span className="glyphicon glyphicon-list"></span>
                            See All
                      </a>
-                     <a href="#" onClick={ () => this.props.toggleHandler('random') } className="btn btn-primary">
+                     <a href="#0" onClick={ () => this.props.toggleHandler('random') } className="btn btn-primary">
                        <span  className="glyphicon glyphicon-random"></span>
                        Random
                      </a>

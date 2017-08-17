@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Toggles from "./Toggles"
 import PageNav from "./PageNav"
 import Loader from "./Loader"
