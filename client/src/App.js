@@ -16,7 +16,6 @@ class App extends Component {
    }
 
    componentWillMount(){
-      console.log('will mount');
       fetch(`/api`,{
          method:"GET",
          credentials: 'include',
@@ -27,16 +26,13 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
-         console.log('i did it!?', data.gifs)
          this.setState({
             gifsTotal: data.gifs
-            // gifs1: data.gifs.slice(0,9)
          })
       })
    }
 
   render() {
-     console.log('totality', this.state.gifsTotal);
      let content = this.state.gifsTotal.length >= 1? <GifList gifsTotal = { this.state.gifsTotal } /> : <Loader />
 
     return (

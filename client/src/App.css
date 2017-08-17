@@ -56,6 +56,17 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
+
+/*Glyphicon Spacing*/
+.glyphicon-random:before {
+   margin-right: 10px;
+}
+
+.glyphicon-list:before {
+   margin-right: 10px;
+}
+
+
 /* Customize container */
 @media (min-width: 768px) {
     .container {

@@ -28,11 +28,9 @@ class GifList extends React.Component {
    }
 
    render () {
-      console.log('tbone', this.state.gifsTotal);
-      console.log('gif list 111', this.state.gifsDisplay);
       let GifItems
       if (!this.state.gifsDisplay || this.state.gifsDisplay < 1) {
-         GifItems = <Loader />
+         GifItems = <div> <Loader /> <h3> There does not appear to be any gifs here! </h3></div>
       }
       else if (this.state.gifsDisplay &&  this.state.gifsDisplay.length > 1){
          GifItems = this.state.gifsDisplay.map((gif, i) => {
